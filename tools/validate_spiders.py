@@ -4,6 +4,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PY_DIR = ROOT / "py"
@@ -38,6 +39,18 @@ files = {f"py/{path.name}" for path in PY_DIR.glob("*.py")}
 manifest_files = {item["file"] for item in records}
 if files != manifest_files:
     errors.append("spider_validation.json does not match py directory")
+
+for manifest_name in ("spiders.json", "spiders_v2.json"):
+    manifest = json.loads((ROOT / manifest_name).read_text(encoding="utf-8-sig"))
+    if not isinstance(manifest, list) or not all(isinstance(url, str) for url in manifest):
+        errors.append(f"{manifest_name}: expected an array of plugin URL strings")
+        continue
+    referenced_files = {
+        "py/" + Path(unquote(urlparse(url).path)).name
+        for url in manifest
+    }
+    if referenced_files != files:
+        errors.append(f"{manifest_name} does not match py directory")
 
 if errors:
     print("\n".join(errors))

@@ -12,7 +12,12 @@ args = parser.parse_args()
 records = json.loads((ROOT / "spider_validation.json").read_text(encoding="utf-8"))
 base = f"https://raw.githubusercontent.com/{args.repo}/refs/heads/main/"
 urls = [base + quote(item["file"], safe="/") for item in records if item["valid"]]
-v2 = [{key: item[key] for key in ("id", "version", "file", "valid")} for item in records]
+# AListTVBox has shipped more than one spiders_v2.json parser.  A plain
+# string array is accepted by both the older importer and the current one,
+# while object entries require a newer backend.  Keep both manifests in the
+# broadly compatible URL-list form so repository import works after upgrades
+# as well as on existing installations.
+v2 = list(urls)
 sites = {
     "spider": "",
     "sites": [

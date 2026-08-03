@@ -1,10 +1,10 @@
-# TVBox Python Spider 源码仓库
+# AListTVBox Python Spider 插件仓库
 
 此目录按 [`har01d5/tvbox`](https://github.com/har01d5/tvbox/tree/master) 的 `py/`、`spiders.json`、`spiders_v2.json` 与校验报告结构整理，共包含 **38** 个 Python Spider。
 
 ## 与参考仓库的区别
 
-参考仓库的 `.txt` 是 `secspider/1` 加密签名包，生成它需要仓库维护者未公开的主密钥和签名私钥。本目录采用公开源码 `.py` 分发，适用于支持远程 Python Spider 的 CatVod、TVBox/FongMi 类运行环境。
+参考仓库的 `.txt` 是 `secspider/1` 加密签名包，生成它需要仓库维护者未公开的主密钥和签名私钥。本目录采用公开源码 `.py` 分发，需要使用支持原始 Python 插件的 AListTVBox 版本。
 
 ## 上传 GitHub
 
@@ -18,18 +18,21 @@ python3 tools/build_manifests.py --repo 你的用户名/仓库名
 3. 再提交更新后的 `spiders.json`、`spiders_v2.json`、`sites.json` 和 `config.json`。
 4. GitHub Actions 会执行语法、Spider 接口和清单一致性校验。
 
-## 使用地址
+## 在 AListTVBox 导入
 
-生成后可以使用：
+进入 AListTVBox 的插件管理，选择“导入仓库”，填写 GitHub 仓库根地址：
 
 ```text
-https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/spiders.json
-https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/spiders_v2.json
-https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/sites.json
-https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/config.json
+https://github.com/你的用户名/仓库名
 ```
 
-TVBox 的配置地址填写 `config.json`。`spiders.json` 与 `spiders_v2.json` 是蜘蛛索引，不是 TVBox 主配置地址。
+AListTVBox 会自动读取仓库根目录的 `spiders_v2.json`。该文件采用兼容性更好的插件 URL 字符串数组格式；它是 AListTVBox 插件仓库索引，不是 TVBox App 的主配置地址。
+
+本仓库对应的导入地址是：
+
+```text
+https://github.com/qq5000/danmu-api
+```
 
 ## 本地校验
 
