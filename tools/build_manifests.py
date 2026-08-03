@@ -24,6 +24,6 @@ sites = {
         for item in records if item["valid"]
     ],
 }
-for name, value in (("spiders.json", urls), ("spiders_v2.json", v2), ("sites.json", sites)):
+for name, value in (("spiders.json", urls), ("spiders_v2.json", v2), ("sites.json", sites), ("config.json", sites)):
     (ROOT / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"Updated manifests for {args.repo}: {len(urls)} spiders")

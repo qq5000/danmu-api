@@ -15,7 +15,7 @@
 python3 tools/build_manifests.py --repo 你的用户名/仓库名
 ```
 
-3. 再提交更新后的 `spiders.json`、`spiders_v2.json` 和 `sites.json`。
+3. 再提交更新后的 `spiders.json`、`spiders_v2.json`、`sites.json` 和 `config.json`。
 4. GitHub Actions 会执行语法、Spider 接口和清单一致性校验。
 
 ## 使用地址
@@ -26,9 +26,10 @@ python3 tools/build_manifests.py --repo 你的用户名/仓库名
 https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/spiders.json
 https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/spiders_v2.json
 https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/sites.json
+https://raw.githubusercontent.com/你的用户名/仓库名/refs/heads/main/config.json
 ```
 
-具体使用哪个清单取决于客户端。`sites.json` 是常见 TVBox 配置片段；`spiders.json` 与 `spiders_v2.json` 对应参考仓库的两种蜘蛛清单。
+TVBox 的配置地址填写 `config.json`。`spiders.json` 与 `spiders_v2.json` 是蜘蛛索引，不是 TVBox 主配置地址。
 
 ## 本地校验
 
